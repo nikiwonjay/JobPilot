@@ -4,6 +4,14 @@ Chrome / Microsoft Edge 浏览器侧边栏求职资料与逐项填写助手。
 
 ## 下载与安装
 
+### Edge 商店安装（推荐）
+
+[在 Microsoft Edge 商店安装 JobPilot](https://microsoftedge.microsoft.com/addons/detail/apcpkfhlajlfbkmekglbbkgacjjhglie)
+
+已正式上架。使用 Edge 打开上方链接，在商店按提示安装即可，无需终端或开发者模式。
+
+### Chrome / Edge 手动安装
+
 下载本仓库中的 **JobPilot-Edge-store-v1.0.19.zip** 并解压。安装包已经构建完成，不需要 Node.js、npm 或终端。
 
 1. Edge 打开 `edge://extensions`，Chrome 打开 `chrome://extensions`。
@@ -11,7 +19,7 @@ Chrome / Microsoft Edge 浏览器侧边栏求职资料与逐项填写助手。
 3. 选择解压后包含 `manifest.json` 的文件夹。
 4. 固定插件图标，在招聘页面点击图标打开侧边栏。
 
-当前为 GitHub 手动安装版；Edge 商店版本已提交审核，目前尚未上架。
+Edge 商店版本已正式上架；本仓库仍提供手动安装包。
 
 ## 使用
 
@@ -53,4 +61,5 @@ Chrome / Microsoft Edge 浏览器侧边栏求职资料与逐项填写助手。
 采用浏览器本地优先架构：侧边栏负责资料管理，后台负责扩展通信和授权，内容脚本负责识别网页字段并执行用户选定的填写操作。日期控件包含 Phoenix 日历适配及通用识别逻辑，无法可靠识别的控件保留手动处理方式。
 
 开发环境使用 Node.js >=22.18.0 与 npm；用户安装本仓库的已构建 ZIP 不需要这些工具。当前仓库提供构建包，尚未上传完整开发源码。
+
 
