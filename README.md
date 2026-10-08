@@ -11,7 +11,7 @@ Chrome / Microsoft Edge 浏览器侧边栏求职资料与逐项填写助手。
 3. 选择解压后包含 `manifest.json` 的文件夹。
 4. 固定插件图标，在招聘页面点击图标打开侧边栏。
 
-当前为 GitHub 手动安装版；Edge 商店申请仍在草稿阶段，尚未上架。
+当前为 GitHub 手动安装版；Edge 商店版本已提交审核，目前尚未上架。
 
 ## 使用
 
@@ -32,3 +32,25 @@ Chrome / Microsoft Edge 浏览器侧边栏求职资料与逐项填写助手。
 支持邮箱：203171592@qq.com
 
 本仓库提供可安装的构建包和说明。包内包含第三方依赖许可说明。
+
+## 技术栈与架构
+
+| 层级 | 技术 | 用途 |
+| --- | --- | --- |
+| 扩展平台 | Chromium Manifest V3 | Chrome / Edge 扩展，Service Worker 后台与侧边栏 |
+| 界面 | React 19、TypeScript 5.9、CSS | 资料库、简历导入、设置与当前字段候选界面 |
+| 构建 | Vite 7、TypeScript | 构建侧边栏、后台与独立内容脚本 |
+| PDF 解析 | PDF.js（pdfjs-dist 6.3.289） | 本地提取文本型 PDF 内容；不包含 OCR |
+| Word 解析 | Mammoth 1.10 | 本地提取 DOCX 文本 |
+| 数据校验 | Zod 4 | 资料及导入数据结构校验 |
+| 本地存储 | chrome.storage.local | 保存资料、映射、设置及用户配置的服务密钥 |
+| 页面交互 | Content Script、DOM API、MutationObserver | 识别当前字段与动态控件，辅助单字段填写 |
+| 扩展通信与授权 | chrome.runtime、tabs、scripting、activeTab、可选网站权限 | 连接侧边栏与目标页面，按用户操作访问网站 |
+| 可选翻译 | 浏览器 Translator API | 浏览器支持时进行本地翻译 |
+| 可选云端 AI | Fetch、用户配置的 HTTPS API | 使用用户指定的模型、服务地址与 API Key |
+| 测试 | Vitest 4、jsdom 26 | 规则、数据处理和 DOM 控件行为测试 |
+
+采用浏览器本地优先架构：侧边栏负责资料管理，后台负责扩展通信和授权，内容脚本负责识别网页字段并执行用户选定的填写操作。日期控件包含 Phoenix 日历适配及通用识别逻辑，无法可靠识别的控件保留手动处理方式。
+
+开发环境使用 Node.js >=22.18.0 与 npm；用户安装本仓库的已构建 ZIP 不需要这些工具。当前仓库提供构建包，尚未上传完整开发源码。
+
